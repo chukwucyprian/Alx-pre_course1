@@ -52,8 +52,8 @@ int main(void)
         }
 
         /* Execute commands separated by semicolons */
-
-	command_token = strtok_r(command, ";", &end_ptr);
+       
+        command_token = strtok_r(command, ";", &end_ptr);
         while (command_token != NULL)
         {
             execute_command(command_token); /* Execute the command */
@@ -124,7 +124,8 @@ void execute_command(char *command)
     else
     {
         /* Parent process */
-        wait(NULL);
+        int status;
+        waitpid(pid, &status, 0);
     }
 }
 
